@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Where in the World? Travel Quiz</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #1d3557, #457b9d);
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .quiz-container {
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #333;
+      max-width: 600px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    #answers button {
+      display: block;
+      width: 100%;
+      margin: 10px auto;
+      padding: 12px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #1d3557;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #answers button:hover {
+      background-color: #457b9d;
+    }
+
+    #feedback {
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-container">
+    <h1>Where in the World Are You?</h1>
+    <p id="question">Loading question...</p>
+
+    <div id="answers">
+      <button onclick="checkAnswer(this)">Option 1</button>
+      <button onclick="checkAnswer(this)">Option 2</button>
+      <button onclick="checkAnswer(this)">Option 3</button>
+      <button onclick="checkAnswer(this)">Option 4</button>
+    </div>
+
+    <p id="feedback"></p>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "This city is home to the Eiffel Tower.",
+        options: ["London", "Paris", "Berlin", "Rome"],
+        answer: "Paris"
+      },
+      {
+        question: "This wonder lies in Peru, high in the Andes.",
+        options: ["Chichen Itza", "Petra", "Machu Picchu", "Christ the Redeemer"],
+        answer: "Machu Picchu"
+      },
+      {
+        question: "This desert is the largest hot desert in the world.",
+        options: ["Gobi", "Sahara", "Atacama", "Mojave"],
+        answer: "Sahara"
+      }
+    ];
+
+    let currentQuestion = 0;
+
+    function loadQuestion() {
+      const q = quizData[currentQuestion];
+      document.getElementById("question").textContent = q.question;
+
+      const buttons = document.querySelectorAll("#answers button");
+      buttons.forEach((btn, i) => {
+        btn.textContent = q.options[i];
+      });
+
+      document.getElementById("feedback").textContent = "";
+    }
+
+    function checkAnswer(btn) {
+      const selected = btn.textContent;
+      const correct = quizData[currentQuestion].answer;
+
+      if (selected === correct) {
+        document.getElementById("feedback").textContent = "✅ Correct!";
+      } else {
+        document.getElementById("feedback").textContent = `❌ The correct answer was: ${correct}`;
+      }
+
+      currentQuestion++;
+      if (currentQuestion < quizData.length) {
+        setTimeout(loadQuestion, 2000);
+      } else {
+        setTimeout(() => {
+          document.getElementById("question").textContent = "🎉 You finished the quiz!";
+          document.getElementById("answers").innerHTML = '';
+          document.getElementById("feedback").textContent = '';
+        }, 2000);
+      }
+    }
+
+    window.onload = loadQuestion;
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Passion for Hiking</title>
+    <link rel="stylesheet" href="./css/scratch-styles.css">
+</head>
+<script>
+    const quizData = [
+      {
+        question: "This city is home to the Eiffel Tower.",
+        options: ["London", "Paris", "Berlin", "Rome"],
+        answer: "Paris"
+      },
+      {
+        question: "This wonder lies in Peru, high in the Andes.",
+        options: ["Chichen Itza", "Petra", "Machu Picchu", "Christ the Redeemer"],
+        answer: "Machu Picchu"
+      },
+      {
+        question: "This desert is the largest hot desert in the world.",
+        options: ["Gobi", "Sahara", "Atacama", "Mojave"],
+        answer: "Sahara"
+      }
+    ];
+  
+    let currentQuestion = 0;
+  
+    function loadQuestion() {
+      const q = quizData[currentQuestion];
+      document.getElementById("question").textContent = q.question;
+  
+      const buttons = document.querySelectorAll("#answers button");
+      buttons.forEach((btn, i) => {
+        btn.textContent = q.options[i];
+      });
+  
+      document.getElementById("feedback").textContent = "";
+    }
+  
+    function checkAnswer(btn) {
+      const selected = btn.textContent;
+      const correct = quizData[currentQuestion].answer;
+  
+      if (selected === correct) {
+        document.getElementById("feedback").textContent = "✅ Correct!";
+      } else {
+        document.getElementById("feedback").textContent = `❌ Oops! The correct answer was: ${correct}`;
+      }
+  
+      currentQuestion++;
+      if (currentQuestion < quizData.length) {
+        setTimeout(loadQuestion, 2000); // show next question after 2 seconds
+      } else {
+        setTimeout(() => {
+          document.getElementById("question").textContent = "🎉 You finished the quiz!";
+          document.getElementById("answers").innerHTML = '';
+          document.getElementById("feedback").textContent = '';
+        }, 2000);
+      }
+    }
+  
+    // Load the first question on page load
+    window.onload = loadQuestion;
+  </script>
+  
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#top">Back to Top</a> | 
+        <a href="#hiking-tips">Hiking Tips</a> | 
+        <a href="#tableau-graph">Tableau Graph</a>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="header" id="top">
+        <h1>My Passion for Hiking</h1>
+        <p>Explore the great outdoors and discover new trails.</p>
+    </div>
+
+    <!-- Section with Ordered and Unordered List -->
+    <section id="hiking-tips">
+        <h2>Essential Hiking Tips</h2>
+        <ol>
+            <li>Stay Hydrated
+                <ul>
+                    <li>Carry enough water</li>
+                    <li>Hydrate before your hike</li>
+                </ul>
+            </li>
+            <li>Wear the Right Gear
+                <ul>
+                    <li>Good hiking boots</li>
+                    <li>Light, breathable clothing</li>
+                </ul>
+            </li>
+            <li>Pack Snacks and Energy Bars</li>
+        </ol>
+    </section>
+
+    <!-- Image Section -->
+    <section class="image-section">
+        <h2>Beautiful Hike</h2>
+        <img src="assets/img/hike.jpg" alt="Hiking view" style="width: 400px;">
+    </section>
+
+    <!-- Embedded YouTube Video -->
+    <section class="video-section">
+        <h2>Cool Hike Video</h2>
+        <iframe src="https://www.youtube.com/embed/2fQZcnSvf-g"
+                title="Cool Hike Video"
+                width="50%" height="400px"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+    </section>
+    
+
+    <!-- Tableau Embedded Graph -->
+    <section id="tableau-graph">
+      
+    </section>
+    <section class="web-app-section" id="travel-game">
+        <h2>Play the Travel Quiz Game</h2>
+        <p>Test your world knowledge with this custom-made travel challenge!</p>
+        <a href="travel-quiz.html" target="_blank">Play the Game</a>
+      </section>
+      <div class='tableauPlaceholder' id='viz1745472013751' style='position: relative'><noscript><a href='#'><img alt='DASHBOARD ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Da&#47;DataforaCause-GlobalPeaceScores&#47;DASHBOARD&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='DataforaCause-GlobalPeaceScores&#47;DASHBOARD' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Da&#47;DataforaCause-GlobalPeaceScores&#47;DASHBOARD&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1745472013751');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1150px';vizElement.style.height='2027px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>      
+      
+    
+
+    <!-- Footer with a link to return to the top -->
+    <footer>
+        <a href="#top">Back to Top</a>
+    </footer>
+
+</body>
+</html>
